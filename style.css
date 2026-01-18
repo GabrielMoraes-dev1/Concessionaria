@@ -1,0 +1,237 @@
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: radial-gradient(circle at top, #7b00d6, #1a012d);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 80px;
+  z-index: 10;
+  position: relative;
+}
+
+header h1 {
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+nav li {
+  cursor: pointer;
+  position: relative;
+}
+
+nav li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #9cff00;
+  transition: .3s;
+}
+
+nav li:hover::after {
+  width: 100%;
+}
+
+/* ===== SLIDER ===== */
+section {
+  height: calc(100vh - 100px);
+  position: relative;
+  overflow: hidden;
+}
+
+.list {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(120px);
+  transition: 1s cubic-bezier(.16,1,.3,1);
+}
+
+.item.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* ===== CARRO ===== */
+.car-img {
+  width: 60%;
+  perspective: 1200px;
+}
+
+.car-img img {
+  width: 100%;
+  transform: rotate(-12deg);
+  transition: transform .2s ease, filter .2s ease;
+  filter:
+    drop-shadow(0 60px 40px rgba(0,0,0,.6))
+    brightness(1);
+}
+
+.item.active .car-img img {
+  transform: translateX(0) rotate(-12deg) scale(1);
+  opacity: 1;
+}
+
+/* ===== TEXTO ===== */
+.content {
+  width: 35%;
+}
+
+.car-information,
+.content h2,
+.description,
+.content button {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.item.active .car-information {
+  animation: textIn .6s ease forwards .2s;
+}
+.item.active h2 {
+  animation: textIn .6s ease forwards .35s;
+}
+.item.active .description {
+  animation: textIn .6s ease forwards .5s;
+}
+.item.active button {
+  animation: textIn .6s ease forwards .65s;
+}
+
+@keyframes textIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.car-information {
+  opacity: .7;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.content h2 {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.description {
+  opacity: .85;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* ===== BOTÃO PREMIUM ===== */
+.content button {
+  background: linear-gradient(135deg, #9cff00, #c6ff4d);
+  border: none;
+  padding: 14px 34px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.content button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.6), transparent);
+  transition: .5s;
+}
+
+.content button:hover::after {
+  left: 100%;
+}
+
+.content button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+}
+
+/* ===== SETAS ===== */
+.arrows {
+  position: absolute;
+  left: 80px;
+  bottom: 80px;
+  display: flex;
+  gap: 15px;
+}
+
+.arrows button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: .3s;
+}
+
+.arrows button:hover {
+  background: rgba(255,255,255,.35);
+  transform: scale(1.1);
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  padding: 10px 40px;
+  font-size: 12px;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
+
+.site-footer p {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.6;
+}
